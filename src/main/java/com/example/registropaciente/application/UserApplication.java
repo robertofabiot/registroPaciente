@@ -1,4 +1,4 @@
-package com.example.registropaciente;
+package com.example.registropaciente.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

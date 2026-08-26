@@ -1,4 +1,4 @@
-package com.example.registropaciente;
+package com.example.registropaciente.controllers;
 
 import com.example.registropaciente.dao.PacientDAO;
 import javafx.fxml.FXML;
