@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: darkblue;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.controllers.PacientController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: darkblue;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.controllers.PacientController">
    <children>
       <Label alignment="CENTER" text="Nombres:" textFill="WHITE">
          <font>
@@ -19,6 +19,17 @@
          </font>
       </Label>
       <TextField fx:id="txtSurnames" />
+      <Label alignment="CENTER" layoutX="135.0" layoutY="94.0" text="Fecha de nacimiento:" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSurnames1" />
+      <RadioButton mnemonicParsing="false" text="Está enfermo" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="13.0" />
+         </font>
+      </RadioButton>
       <Button fx:id="btnAdd" mnemonicParsing="false" text="Agregar" />
    </children>
    <padding>

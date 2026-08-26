@@ -10,4 +10,6 @@ module com.example.registropaciente {
     opens com.example.registropaciente.controllers to javafx.fxml;
     exports com.example.registropaciente.application;
     opens com.example.registropaciente.application to javafx.fxml;
+    exports com.example.registropaciente.enums;
+    opens com.example.registropaciente.enums to javafx.fxml;
 }
