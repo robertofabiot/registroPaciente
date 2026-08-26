@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,5 +15,7 @@ import lombok.Setter;
 public class Pacient {
     private String names;
     private String surnames;
-    private Sexo sexo;
+    private Sexo sex;
+    private boolean isSick;
+    private Date birthDate;
 }
