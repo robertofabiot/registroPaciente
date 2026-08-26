@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pacient {
+public class Patient {
     private String names;
     private String surnames;
     private Sexo sex;

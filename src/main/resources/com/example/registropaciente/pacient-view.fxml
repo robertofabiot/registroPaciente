@@ -24,7 +24,7 @@
             <Font name="JetBrains Mono ExtraBold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSurnames1" />
+      <DatePicker />
       <RadioButton mnemonicParsing="false" text="Está enfermo" textFill="WHITE">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="13.0" />
