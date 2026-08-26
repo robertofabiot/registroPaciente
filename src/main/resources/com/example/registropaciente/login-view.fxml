@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: darkcyan;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.LoginController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label alignment="CENTER" text="Nombre de usuario">
+               <font>
+                  <Font name="JetBrains Mono ExtraBold" size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUsername" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="30.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label alignment="CENTER" text="Contraseña">
+               <font>
+                  <Font name="JetBrains Mono ExtraBold" size="21.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtPasswordField" />
+         </children>
+      </HBox>
+      <Button fx:id="btnIngresar" alignment="CENTER" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" />
+   </children>
+</VBox>
