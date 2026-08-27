@@ -2,13 +2,16 @@ package com.example.registropaciente.controllers;
 
 import com.example.registropaciente.dao.UserDAO;
 import com.example.registropaciente.models.User;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -71,12 +74,20 @@ public class LoginController {
 
     private void openPacientView(User user) {
         System.out.println("Iniciando sesión del usuario " + user.getUsername());
-        try{
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/registropaciente/patient-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
             Stage stage = (Stage) txtPasswordField.getScene().getWindow();
+            stage.setTitle("Registro de Pacientes");
             stage.setScene(scene);
-            stage.show();
+            stage.sizeToScene();
+            stage.centerOnScreen();
+
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), root);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
         } catch (IOException e) {
             e.printStackTrace();
         }
