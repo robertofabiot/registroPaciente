@@ -122,6 +122,27 @@ public class PacientController {
         }
     }
 
+    private String formatNames(String name){
+        StringBuilder nameFormated = new StringBuilder();
+
+        boolean lastIsWhiteSpace = false;
+
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+
+            if(Character.isWhitespace(c) && !lastIsWhiteSpace) {
+                nameFormated.append(c);
+               lastIsWhiteSpace = true;
+
+            } else if (Character.isLetter(c)){
+                nameFormated.append(c);
+                lastIsWhiteSpace = false;
+            }
+
+        }
+        return nameFormated.toString();
+    }
+
     private Patient leerDatos() {
         Date birthDate = null;
 
@@ -129,9 +150,12 @@ public class PacientController {
             birthDate = Date.from(dtPicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         }
 
+        String name = formatNames(txtNames.getText().trim());
+        String surname = formatNames(txtSurnames.getText().trim());
+
         return new Patient(
-                txtNames.getText().trim(),
-                txtSurnames.getText().trim(),
+                name,
+                surname,
                 cbSex.getValue(),
                 rbtnSick.isSelected(),
                 birthDate
