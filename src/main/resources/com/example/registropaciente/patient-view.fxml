@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="560.0" prefWidth="760.0" spacing="16.0" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.controllers.PacientController">
+   <children>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Pacientes" textFill="#1f2937">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Separator />
+      <GridPane hgap="18.0" maxWidth="620.0" vgap="12.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="170.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="300.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <Label text="Nombres" textFill="#111827">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNames" promptText="Ejemplo: Carlos Alberto" GridPane.columnIndex="1" />
+            <Label text="Apellidos" textFill="#111827" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSurnames" promptText="Ejemplo: Ramírez López" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Sexo" textFill="#111827" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbSex" maxWidth="1.7976931348623157E308" promptText="Seleccione una opción" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Fecha de nacimiento" textFill="#111827" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dtPicker" maxWidth="1.7976931348623157E308" promptText="Seleccione la fecha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <RadioButton fx:id="rbtnSick" mnemonicParsing="false" text="Está enfermo" textFill="#111827" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </GridPane>
+      <Label fx:id="lblAdvertencia" alignment="CENTER" maxWidth="620.0" minHeight="24.0" textFill="#b91c1c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAdd" defaultButton="true" mnemonicParsing="false" onAction="#addOnClick" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #0f766e; -fx-text-fill: white; -fx-font-weight: bold;" text="Agregar" />
+      <Separator />
+      <Label alignment="CENTER_LEFT" maxWidth="620.0" text="Pacientes registrados" textFill="#1f2937">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lstPacients" prefHeight="180.0" prefWidth="620.0" />
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="42.0" right="42.0" top="30.0" />
+   </padding>
+</VBox>
