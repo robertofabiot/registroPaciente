@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -171,8 +172,15 @@ public class PacientController {
     }
 
     private String formatPacient(Patient pacient) {
-        String sickStatus = pacient.isSick() ? "Enfermo" : "No enfermo";
-        return "%s, %s - %s".formatted(pacient.getSurnames(), pacient.getNames(), sickStatus);
+        String sickStatus = pacient.isSick() ? "ENFERMO" : "NO ENFERMO";
+        String birthDate = new SimpleDateFormat("dd/MM/yyyy").format(pacient.getBirthDate());
+
+        return "%s - %s | %s | %s | %s".formatted(
+                pacient.getNames().toUpperCase(),
+                pacient.getSurnames().toUpperCase(),
+                pacient.getSex().toString().toUpperCase(),
+                sickStatus,
+                birthDate);
     }
 
     private void clearForm() {
