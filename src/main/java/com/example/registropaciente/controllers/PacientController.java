@@ -78,7 +78,7 @@ public class PacientController {
 
     private void configureValidation() {
         txtNames.textProperty().addListener((observable, oldValue, newValue) -> validarDatos());
-        txtSurnames.textProper  ty().addListener((observable, oldValue, newValue) -> validarDatos());
+        txtSurnames.textProperty().addListener((observable, oldValue, newValue) -> validarDatos());
         cbSex.valueProperty().addListener((observable, oldValue, newValue) -> validarDatos());
         dtPicker.valueProperty().addListener((observable, oldValue, newValue) -> validarDatos());
     }
