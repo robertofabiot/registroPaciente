@@ -65,7 +65,10 @@ public class PacientController {
     @FXML
     private void initialize() {
         cbSex.getItems().setAll(Sexo.values());
+<<<<<<< Updated upstream
         configureDatePicker();
+=======
+>>>>>>> Stashed changes
         configureTable();
         configureValidation();
         validarDatos();
@@ -150,6 +153,14 @@ public class PacientController {
         txtSurnames.textProperty().addListener((observable, oldValue, newValue) -> validarDatos());
         cbSex.valueProperty().addListener((observable, oldValue, newValue) -> validarDatos());
         dtPicker.valueProperty().addListener((observable, oldValue, newValue) -> validarDatos());
+    }
+
+    private void configureTable() {
+        colNames.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNames()));
+        colSurnames.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSurnames()));
+        colSex.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSex().toString()));
+        colSick.setCellValueFactory(cellData -> new SimpleStringProperty(formatSickStatus(cellData.getValue())));
+        colBirthDate.setCellValueFactory(cellData -> new SimpleStringProperty(formatBirthDate(cellData.getValue())));
     }
 
     private void validarDatos(){
@@ -241,6 +252,21 @@ public class PacientController {
 
     private void refreshPacientList() {
         tblPacients.getItems().setAll(pacients.listarPacientes());
+<<<<<<< Updated upstream
+=======
+    }
+
+    private String formatSickStatus(Patient pacient) {
+        return pacient.isSick() ? "ENFERMO" : "NO ENFERMO";
+    }
+
+    private String formatBirthDate(Patient pacient) {
+        if (pacient.getBirthDate() == null) {
+            return "";
+        }
+
+        return new SimpleDateFormat("dd/MM/yyyy").format(pacient.getBirthDate());
+>>>>>>> Stashed changes
     }
 
     private void clearForm() {

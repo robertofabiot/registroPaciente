@@ -9,15 +9,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+<<<<<<< Updated upstream
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+=======
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+>>>>>>> Stashed changes
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+<<<<<<< Updated upstream
 import java.util.ArrayList;
 import java.util.List;
+=======
+import java.net.URL;
+>>>>>>> Stashed changes
 
 public class LoginController {
     private final UserDAO users = new UserDAO();
@@ -30,6 +45,7 @@ public class LoginController {
 
     @FXML
     private Label lblAdvertencia;
+
 
     @FXML
     private Button btnIngresar;

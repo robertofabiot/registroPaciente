@@ -13,6 +13,10 @@ module com.example.registropaciente {
     opens com.example.registropaciente.application to javafx.fxml;
     exports com.example.registropaciente.enums;
     opens com.example.registropaciente.enums to javafx.fxml;
+<<<<<<< Updated upstream
     exports com.example.registropaciente.models;
     opens com.example.registropaciente.models to javafx.fxml, javafx.base;
 }
+=======
+}
+>>>>>>> Stashed changes
