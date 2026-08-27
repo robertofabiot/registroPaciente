@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacientDAO {
-    List<Patient> pacients;
-
-    public void PacienteDAO(){
-        pacients = new ArrayList<>();
-    }
+    private final List<Patient> pacients = new ArrayList<>();
 
     public void addPacient(Patient pacient){
         pacients.add(pacient);
