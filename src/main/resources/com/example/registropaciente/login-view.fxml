@@ -2,14 +2,20 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="420.0" prefWidth="640.0" spacing="18.0" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.controllers.LoginController">
+<VBox alignment="CENTER" prefHeight="540.0" prefWidth="640.0" spacing="14.0" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.registropaciente.controllers.LoginController">
    <padding>
-      <Insets bottom="36.0" left="48.0" right="48.0" top="36.0" />
+      <Insets bottom="24.0" left="48.0" right="48.0" top="24.0" />
    </padding>
    <children>
+      <ImageView fitHeight="130.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/muerto.png" />
+         </image>
+      </ImageView>
       <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Registro de Pacientes" textFill="#1f2937">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -50,5 +56,6 @@
             <Button fx:id="btnIngresar" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#ingresar" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #0f766e; -fx-text-fill: white; -fx-font-weight: bold;" text="Ingresar" />
          </children>
       </HBox>
+      <ImageView fx:id="imgCandado" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </VBox>

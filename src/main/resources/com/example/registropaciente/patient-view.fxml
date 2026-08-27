@@ -69,7 +69,18 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="lstPacients" prefHeight="180.0" prefWidth="620.0" />
+      <TableView fx:id="tblPacients" prefHeight="200.0" prefWidth="620.0">
+         <columns>
+            <TableColumn fx:id="colNames" prefWidth="120.0" text="Nombres" />
+            <TableColumn fx:id="colSurnames" prefWidth="120.0" text="Apellidos" />
+            <TableColumn fx:id="colSex" prefWidth="90.0" text="Sexo" />
+            <TableColumn fx:id="colSick" prefWidth="110.0" text="Estado" />
+            <TableColumn fx:id="colBirthDate" prefWidth="160.0" text="Fecha de nacimiento" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </children>
    <padding>
       <Insets bottom="30.0" left="42.0" right="42.0" top="30.0" />

@@ -3,16 +3,20 @@ package com.example.registropaciente.controllers;
 import com.example.registropaciente.dao.PacientDAO;
 import com.example.registropaciente.enums.Sexo;
 import com.example.registropaciente.models.Patient;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -38,7 +42,22 @@ public class PacientController {
     private Button btnAdd;
 
     @FXML
-    private ListView<String> lstPacients;
+    private TableView<Patient> tblPacients;
+
+    @FXML
+    private TableColumn<Patient, String> colNames;
+
+    @FXML
+    private TableColumn<Patient, String> colSurnames;
+
+    @FXML
+    private TableColumn<Patient, String> colSex;
+
+    @FXML
+    private TableColumn<Patient, String> colSick;
+
+    @FXML
+    private TableColumn<Patient, String> colBirthDate;
 
     @FXML
     private Label lblAdvertencia;
@@ -46,9 +65,24 @@ public class PacientController {
     @FXML
     private void initialize() {
         cbSex.getItems().setAll(Sexo.values());
+        configureDatePicker();
+        configureTable();
         configureValidation();
         validarDatos();
         refreshPacientList();
+    }
+
+    private void configureTable() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        colNames.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNames()));
+        colSurnames.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSurnames()));
+        colSex.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSex() != null ? data.getValue().getSex().toString() : ""));
+        colSick.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().isSick() ? "ENFERMO" : "NO ENFERMO"));
+        colBirthDate.setCellValueFactory(data -> {
+            Date date = data.getValue().getBirthDate();
+            return new SimpleStringProperty(date != null ? dateFormat.format(date) : "");
+        });
     }
 
     @FXML
@@ -56,6 +90,16 @@ public class PacientController {
         clearWarning();
 
         if (!allRequiredDataIsReady()) {
+            if (dtPicker.getValue() != null && !isBirthDateValid(dtPicker.getValue())) {
+                if (dtPicker.getValue().isAfter(LocalDate.now())) {
+                    showWarning("La fecha de nacimiento no puede ser una fecha futura");
+                } else {
+                    showWarning("La fecha de nacimiento debe estar dentro de los últimos 120 años");
+                }
+                dtPicker.requestFocus();
+                return;
+            }
+
             showWarning("Complete todos los campos obligatorios antes de agregar el paciente");
             focusFirstInvalidField();
             return;
@@ -66,6 +110,31 @@ public class PacientController {
         pacients.addPacient(pacient);
         refreshPacientList();
         clearForm();
+    }
+
+    private void configureDatePicker() {
+        dtPicker.setEditable(false);
+        dtPicker.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                LocalDate minDate = today.minusYears(120);
+                if (date != null && (date.isAfter(today) || date.isBefore(minDate))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #e5e7eb;");
+                }
+            }
+        });
+    }
+
+    private boolean isBirthDateValid(LocalDate date) {
+        if (date == null) {
+            return false;
+        }
+        LocalDate today = LocalDate.now();
+        LocalDate minDate = today.minusYears(120);
+        return !date.isAfter(today) && !date.isBefore(minDate);
     }
 
     private void showWarning(String message) {
@@ -88,6 +157,12 @@ public class PacientController {
 
         if (allRequiredDataIsReady()) {
             clearWarning();
+        } else if (dtPicker.getValue() != null && !isBirthDateValid(dtPicker.getValue())) {
+            if (dtPicker.getValue().isAfter(LocalDate.now())) {
+                showWarning("La fecha de nacimiento no puede ser una fecha futura");
+            } else {
+                showWarning("La fecha de nacimiento debe estar dentro de los últimos 120 años");
+            }
         }
     }
 
@@ -95,7 +170,8 @@ public class PacientController {
         return hasText(txtNames)
                 && hasText(txtSurnames)
                 && cbSex.getValue() != null
-                && dtPicker.getValue() != null;
+                && dtPicker.getValue() != null
+                && isBirthDateValid(dtPicker.getValue());
     }
 
     private boolean hasText(TextField textField) {
@@ -118,7 +194,7 @@ public class PacientController {
             return;
         }
 
-        if (dtPicker.getValue() == null) {
+        if (dtPicker.getValue() == null || !isBirthDateValid(dtPicker.getValue())) {
             dtPicker.requestFocus();
         }
     }
@@ -164,23 +240,7 @@ public class PacientController {
     }
 
     private void refreshPacientList() {
-        lstPacients.getItems().clear();
-
-        for (Patient pacient : pacients.listarPacientes()) {
-            lstPacients.getItems().add(formatPacient(pacient));
-        }
-    }
-
-    private String formatPacient(Patient pacient) {
-        String sickStatus = pacient.isSick() ? "ENFERMO" : "NO ENFERMO";
-        String birthDate = new SimpleDateFormat("dd/MM/yyyy").format(pacient.getBirthDate());
-
-        return "%s - %s | %s | %s | %s".formatted(
-                pacient.getNames().toUpperCase(),
-                pacient.getSurnames().toUpperCase(),
-                pacient.getSex().toString().toUpperCase(),
-                sickStatus,
-                birthDate);
+        tblPacients.getItems().setAll(pacients.listarPacientes());
     }
 
     private void clearForm() {
