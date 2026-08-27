@@ -34,27 +34,38 @@ public class LoginController {
 
     @FXML
     protected void ingresar(){
+        User user = leerDatos();
+
+        if (validarDatos(user)) {
+            User userFound = findUserByUsername(user.getUsername());
+            openPacientView(userFound);
+        }
+    }
+
+    private User leerDatos() {
         String username = txtUsername.getText().trim();
         String password = txtPasswordField.getText();
+        return new User(username, password);
+    }
 
-        User userFound = findUserByUsername(username);
+    private boolean validarDatos(User user) {
+        User userFound = findUserByUsername(user.getUsername());
 
         if (userFound == null) {
             showWarning("El usuario es incorrecto, intente de nuevo");
             txtUsername.requestFocus();
             txtUsername.selectAll();
-            return;
+            return false;
         }
 
-
-        if (!userFound.getPassword().equals(password)) {
+        if (!userFound.getPassword().equals(user.getPassword())) {
             showWarning("La contraseña es incorrecta, intente de nuevo");
             txtPasswordField.requestFocus();
             txtPasswordField.selectAll();
-            return;
+            return false;
         }
 
-        openPacientView(userFound);
+        return true;
     }
 
     private User findUserByUsername(String username) {
